@@ -1,0 +1,21 @@
+body {
+	background-image: url("../img/bg.png");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+#hero-unit-img {
+	position: absolute;
+	clip: rect(0px, auto, 250px, 0px);
+	opacity: 0.4;
+}
+
+#painellogin {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15%;
+	width: 20%;
+	height: 45%;
+	box-shadow: 0 0 30px black;
+}

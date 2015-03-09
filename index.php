@@ -11,13 +11,13 @@ error_reporting(0);
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="js/bootstrap.js"></script>   
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/index.css">
 	</head>
 	<body>
 		
 		<!-- Cabeçalho -->
 		
-		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
           		<div class="navbar-header">
          			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#togglenavbar">
@@ -27,19 +27,49 @@ error_reporting(0);
 				        <span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
       				</button>
-            		<a class="navbar-brand"><img class="img-rounded" id="logo" src="img/logo_sindicato.gif"></a>
+      				<!-- Logo da página
+            		<a class="navbar-brand"><img class="img-rounded" id="logo" src="img/logo.jpg"></a>
+            		-->
           		</div>
     			<div class="collapse navbar-collapse" id="togglenavbar">
             		<ul class="nav navbar-nav">
               			<li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Início</a></li>
+              		</ul>
+              		<ul class="nav navbar-nav">
+              			<li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+              		</ul>
             		<ul class="nav navbar-right">
-            			<a href="changelog.php" id="linkeast" class="navbar-text">v0.9.0a</a>
+            			<p class="navbar-text">alpha</p>
             		</ul>
       			</div>
 			</div>
 		</div>
 
 	<!-- Fim cabeçalho -->
-
+		<div classs="container">
+			<div class="row">
+				<div class="panel panel-default" id="painellogin">
+					<div class="panel-heading"><span class="glyphicon glyphicon-log-in"></span>    Login</div>
+					<div class="panel-body">
+						<form method="post" action="valida.php" id="formlogin">
+							<input type="text" class="form-control" name="usuario" maxlength="50" placeholder="Usuário" /><br />
+							<input class="form-control" type="password" name="senha" maxlength="16" placeholder="Senha" /><br />
+							<button type="submit" class="btn btn-default">Entrar</button>
+						</form>
+						<div class="alert alert-info" role="alert">
+							<p><span class="glyphicon glyphicon-user"></span>&nbsp&nbspAinda não possui conta? <a href="cadastro.php"><b>Clique aqui!</b></a></p>
+						</div>
+						<?php
+						if ($_SESSION["erro"] == 1) {// Requisita variável "erro" gravada em sessão e verifica se o valor é 1
+							echo "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><span class='glyphicon glyphicon-warning-sign'></span> Usuário ou senha incorretos </div>";
+							// Caso o valor seja 1, exibe o mensagem
+							$_SESSION["erro"] = 0;
+							// Reseta variável "erro" para evitar que seja exibida após atualização de página
+						}
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
