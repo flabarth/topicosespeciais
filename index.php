@@ -39,7 +39,7 @@ error_reporting(0);
               			<li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
               		</ul>
             		<ul class="nav navbar-right">
-            			<p class="navbar-text">alpha v0.1.004.1539</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
+            			<p class="navbar-text">alpha v0.2.5.150310</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
             		</ul>
       			</div>
 			</div>
@@ -54,7 +54,7 @@ error_reporting(0);
 						<form method="post" action="valida.php" id="formlogin">
 							<input type="text" class="form-control" name="usuario" maxlength="50" placeholder="Usuário" /><br />
 							<input class="form-control" type="password" name="senha" maxlength="16" placeholder="Senha" /><br />
-							<button type="submit" class="btn btn-default">Entrar</button>
+							<button type="submit" class="btn btn-primary">Entrar</button>
 						</form>
 						<div class="alert alert-info" role="alert">
 							<p><span class="glyphicon glyphicon-user"></span>&nbsp&nbspAinda não possui conta? <a href="cadastro.php"><b>Clique aqui!</b></a></p>

@@ -13,7 +13,7 @@
 	
 	//  Configurações do Script
 	// ==============================
-	$_SG['conectaServidor'] = false;    // Abre uma conexão com o servidor MySQL?
+	$_SG['conectaServidor'] = true;    // Abre uma conexão com o servidor MySQL?
 	$_SG['abreSessao'] = true;         // Inicia a sessão com um session_start()?
 	
 	$_SG['caseSensitive'] = true;     // Usar case-sensitive? Onde 'thiago' é diferente de 'THIAGO'
@@ -24,7 +24,7 @@
 	$_SG['servidor'] = 'localhost';    // Servidor MySQL
 	$_SG['usuario'] = 'root';          // Usuário MySQL
 	$_SG['senha'] = '';                // Senha MySQL
-	$_SG['banco'] = 'login';            // Banco de dados MySQL
+	$_SG['banco'] = 'topicos';            // Banco de dados MySQL
 	
 	$_SG['paginaLogin'] = 'index.php'; // Página de login
 	
@@ -55,58 +55,38 @@
 	* @return bool - Se o usuário foi validado ou não (true/false)
 	*/
 	function validaUsuario($usuario, $senha) {
-	global $_SG;
-	
-	$cS = ($_SG['caseSensitive']) ? 'BINARY' : '';
-	
-	// Usa a função addslashes para escapar as aspas
-	$nusuario = addslashes($usuario);
-	$nsenha = addslashes($senha);
-	
-	// Conecta com API
-	$controle = 0; // variável de controle do if, if só será executado se $controle for 0
-	//return false;
-	$object_associados = file_get_contents('http://187.7.114.68:8080/associados?date=0'); // Conecta
-	$associados_dec1 = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $object_associados), true); // Decodifica
-	foreach ($associados_dec1 as $key => $value) {
-		unset($userassoc, $senhassoc);
-		$userassoc = $associados_dec1[$key]["id"]; // pega user -- neste caso usando o ID da API dos associados
-		$senhassoc = $associados_dec1[$key]["access_key"]; // pega senha
-			if ($userassoc == $usuario) { // verifica se usuário existe na API
-				if ($senhassoc == $senha) { // verifica se senha confere com usuário
-					// O registro foi encontrado => o usuário é valido
+  global $_SG;
 
-					// Definimos dois valores na sessão com os dados do usuário
-					$_SESSION['usuarioID'] = $associados_dec1[$key]["id"]; // Pega o valor da coluna 'id do registro encontrado na API
-					$_SESSION['usuarioNome'] = $associados_dec1[$key]["nome"]; // Pega o valor da coluna 'nome' do registro encontrado na API
-					
-					// Verifica a opção se sempre validar o login
-					if ($_SG['validaSempre'] == true) {
-					// Definimos dois valores na sessão com os dados do login
-					$_SESSION['usuarioLogin'] = $usuario;
-					$_SESSION['usuarioSenha'] = $senha;
-					}
-					return true;
-					} else {
-						//return false;
-					}	
-				} else {
-					//return false;
-				}
-			}
-		}
-	
-	// Monta uma consulta SQL (query) para procurar um usuário
-	//$sql = "SELECT `id`, `nome` FROM `".$_SG['tabela']."` WHERE ".$cS." `usuario` = '".$nusuario."' AND ".$cS." `senha` = '".$nsenha."' LIMIT 1";
-	//$query = mysql_query($sql);
-	//$resultado = mysql_fetch_assoc($query);
-	
-	// Verifica se encontrou algum registro
-	//if ($resultado = 0) {
-	// Nenhum registro foi encontrado => o usuário é inválido
-	//return false;
-	
-	//} else {
+  $cS = ($_SG['caseSensitive']) ? 'BINARY' : '';
+
+  // Usa a função addslashes para escapar as aspas
+  $nusuario = addslashes($usuario);
+  $nsenha = addslashes($senha);
+
+  // Monta uma consulta SQL (query) para procurar um usuário
+  $sql = "SELECT `id`, `nome` FROM `".$_SG['tabela']."` WHERE ".$cS." `usuario` = '".$nusuario."' AND ".$cS." `senha` = '".$nsenha."' LIMIT 1";
+  $query = mysql_query($sql);
+  $resultado = mysql_fetch_assoc($query);
+
+  // Verifica se encontrou algum registro
+  if (empty($resultado)) {
+    // Nenhum registro foi encontrado => o usuário é inválido
+    return false;
+  } else {
+    // Definimos dois valores na sessão com os dados do usuário
+    $_SESSION['usuarioID'] = $resultado['id']; // Pega o valor da coluna 'id do registro encontrado no MySQL
+    $_SESSION['usuarioNome'] = $resultado['nome']; // Pega o valor da coluna 'nome' do registro encontrado no MySQL
+
+    // Verifica a opção se sempre validar o login
+    if ($_SG['validaSempre'] == true) {
+      // Definimos dois valores na sessão com os dados do login
+      $_SESSION['usuarioLogin'] = $usuario;
+      $_SESSION['usuarioSenha'] = $senha;
+    }
+
+    return true;
+  }
+}
 	
 	
 	/**
@@ -149,7 +129,7 @@
 	 * == 24/06/2014 ==
 	 *    ----------------!! O usuário administrador precisa ser criado na API !!----------------
 	 */
-	/*function adminOnly() {
+	function adminOnly() {
 	global $_SG;
 		
 		// Captura id do usuário conectado
@@ -165,5 +145,5 @@
 		} else {
 			return true;
 		}
-	}*/
+	}
 ?>	
