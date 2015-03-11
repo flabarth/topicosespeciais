@@ -9,9 +9,12 @@ error_reporting(0);
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Importante para habilitar os recursos de Responsividade em conjunto com o CSS -->        
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+		<script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
         <script src="js/bootstrap.js"></script>   
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/index.css">
+        <script type="text/javascript">$(document).ready(function(){	$("#usuario").mask("999.999.999-99");});</script>
 	</head>
 	<body>
 		
@@ -39,7 +42,7 @@ error_reporting(0);
               			<li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
               		</ul>
             		<ul class="nav navbar-right">
-            			<p class="navbar-text">alpha v0.4.6.150310</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
+            			<p class="navbar-text">alpha v0.6.7.150311</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
             		</ul>
       			</div>
 			</div>
@@ -52,7 +55,7 @@ error_reporting(0);
 					<div class="panel-heading"><span class="glyphicon glyphicon-log-in"></span>    Login</div>
 					<div class="panel-body">
 						<form method="post" action="valida.php" id="formlogin">
-							<input type="text" class="form-control" name="usuario" maxlength="50" placeholder="Usuário" /><br />
+							<input type="text" class="form-control" name="usuario" id="usuario" maxlength="50" placeholder="CPF" /><br />
 							<input class="form-control" type="password" name="senha" maxlength="16" placeholder="Senha" /><br />
 							<button type="submit" class="btn btn-primary">Entrar</button>
 						</form>
@@ -61,7 +64,7 @@ error_reporting(0);
 						</div>
 						<?php
 						if ($_SESSION["erro"] == 1) {// Requisita variável "erro" gravada em sessão e verifica se o valor é 1
-							echo "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><span class='glyphicon glyphicon-warning-sign'></span> Usuário ou senha incorretos </div>";
+							echo "<div class='alert alert-danger alert-dismissible' id='alerta-erro' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><span class='glyphicon glyphicon-warning-sign'></span> Usuário ou senha incorretos </div>";
 							// Caso o valor seja 1, exibe o mensagem
 							$_SESSION["erro"] = 0;
 							// Reseta variável "erro" para evitar que seja exibida após atualização de página

@@ -1,0 +1,14 @@
+body {
+	background-image: url("../img/bg3.png");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	padding-top: 65px;
+}
+
+#painelcadastro {
+	margin-top: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	box-shadow: 0 0 30px black;
+}

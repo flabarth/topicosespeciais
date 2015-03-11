@@ -8,9 +8,12 @@ include ("seguranca.php");
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Importante para habilitar os recursos de Responsividade em conjunto com o CSS -->        
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+		<script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
         <script src="js/bootstrap.js"></script>   
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/status.css">
+        <script type="text/javascript">$(document).ready(function(){	$("#cpfindicado").mask("999.999.999-99");});</script>
 	</head>
 	<body>
 		
@@ -60,7 +63,12 @@ include ("seguranca.php");
 				    <div class="caption">
 				    	<h4>Indique alguém.</h4>
 				        <p>Obtenha maiores benefícios ao indicar mais pessoas!</p>
-				        <p><a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus"></span> Cadastrar pessoas</a>
+				        <p><div class="input-group">
+				        	<input name="cpfindicado" id="cpfindicado" type="text" class="form-control" placeholder="CPF do indicado">
+				        	<span class="input-group-btn">
+				        		<button class="btn btn-primary" type="button">Convidar</button>
+				        	</span>
+				        </div></p>
 				    </div>
 				</div>
 				<div class="thumbnail" id="imagem-novo-membro">

@@ -19,3 +19,8 @@ body {
 	height: 45%;
 	box-shadow: 0 0 30px black;
 }
+
+#alerta-erro {
+	margin-top: -165%;
+	box-shadow: 0 0 30px black;
+}
