@@ -1,5 +1,6 @@
 <?php
 include ("seguranca.php");
+protegePagina();
 ?>
 <html>
 	<head>

@@ -42,7 +42,7 @@ error_reporting(0);
               			<li><a href="cadastro.php"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
               		</ul>
             		<ul class="nav navbar-right">
-            			<p class="navbar-text">alpha v0.6.7.150311</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
+            			<p class="navbar-text">alpha v0.7.8.150312</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
             		</ul>
       			</div>
 			</div>
