@@ -127,7 +127,6 @@
 	 * Função para somente permitir o administrador na página
 	 * @author Flavo H. Barth
 	 * == 24/06/2014 ==
-	 *    ----------------!! O usuário administrador precisa ser criado na API !!----------------
 	 */
 	function adminOnly() {
 	global $_SG;

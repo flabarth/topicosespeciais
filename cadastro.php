@@ -19,20 +19,22 @@ error_reporting(0);
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/cadastro.css">
         <script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
-        <script type="text/javascript">
-		    window.onload = function() {
+        <script>
+        	$(document).ready(function(){
 		        new dgCidadesEstados(
 		            document.getElementById('estado'),
 		            document.getElementById('cidade'),
-		            true
-		        );
+		          true
+		        )});        
+        </script>
+        <script>
+		    window.onload = function() {
+		        $("#cep").mask("99.999-999");     
 		    }
-		<!--</script>
-        <script type="text/javascript">-->
-        	$(document).ready(function() {
-        			$("#cep").mask("99.999-999");
-        			$("#cpf").mask("999.999.999-99"); // corrigir isso
-        	});</script>
+		    $(document).ready(function(){
+		        	$("#cpf").mask("999.999.999-99");
+		       });
+		</script>
 	</head>
 	<body>
 		
