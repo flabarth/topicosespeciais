@@ -44,7 +44,7 @@ error_reporting(0);
             		<ul class="nav navbar-right">
             			<p class="navbar-text">alpha v0.10.9.150316</p> <!-- v[major].[minor].[rev].[ano/mês/dia] -->
             		</ul>
-      			</div>
+      		</div>
 			</div>
 		</div>
 
